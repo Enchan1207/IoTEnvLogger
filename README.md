@@ -15,9 +15,11 @@ Environment data logger device (using ESP8266 module).
 	* Display.cpp/Display.h: software control class(inherit SSD1306.h)
  * Temp/Humid sensor class
 	* SHT31.cpp/SHT31.h: [sensor](http://akizukidenshi.com/catalog/g/gK-12125/) control class
+ * HTTP Communication class
+	* HTTPReq.cpp/HTTPReq.h: HTTP Request class
 
 __NOTE__  
- * The initialize part of SSD1306.cpp/SSD1306.h use [mgo-tec/OLED_SSD1306](https://github.com/mgo-tec/OLED_SSD1306) as reference.  
+ * The initialize part(void SSD1306::softReset()) of SSD1306.cpp/SSD1306.h use [mgo-tec/OLED_SSD1306](https://github.com/mgo-tec/OLED_SSD1306) as reference.  
  * SHT31.cpp/SHT31.h are remodeling versions of [sample library from akizukidenshi](http://akizukidenshi.com/download/AE_SHT31.zip).
  
 ## Usage
