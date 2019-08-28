@@ -17,8 +17,13 @@ Environment data logger device (using ESP8266 module).
 	* SHT31.cpp/SHT31.h: [sensor](http://akizukidenshi.com/catalog/g/gK-12125/) control class
 
 __NOTE__  
- * The initialize part of SSD1306.cpp/SSD1306.h use [mgo-tec/OLED_SSD1306](https://github.com/mgo-tec/OLED_SSD1306) as reference.  
  * SHT31.cpp/SHT31.h are remodeling versions of [sample library from akizukidenshi](http://akizukidenshi.com/download/AE_SHT31.zip).
  
-##Usage
+## Usage
 
+## Open Source Licenses
+* [mgo-tec/OLED_SSD1306](https://github.com/mgo-tec/OLED_SSD1306)
+  > Arduino or ESP-WROOM-02(ESP8266) Library
+  >
+  > Copyright (c) 2016 Mgo-tec
+  > https://github.com/mgo-tec/OLED_SSD1306/blob/master/LICENSE
