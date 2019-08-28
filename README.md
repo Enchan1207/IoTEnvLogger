@@ -28,3 +28,6 @@ __NOTE__
   >
   > Copyright (c) 2016 Mgo-tec  
   > https://github.com/mgo-tec/OLED_SSD1306/blob/master/LICENSE
+
+## LICENCE
+All files except those described in the Open Source License section are distributed under the MIT license.
