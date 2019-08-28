@@ -23,7 +23,7 @@ __NOTE__
 
 ## Open Source Licenses
 * [mgo-tec/OLED_SSD1306](https://github.com/mgo-tec/OLED_SSD1306)
-  > Arduino or ESP-WROOM-02(ESP8266) Library
+  > Arduino or ESP-WROOM-02(ESP8266) Library  
   >
-  > Copyright (c) 2016 Mgo-tec
+  > Copyright (c) 2016 Mgo-tec  
   > https://github.com/mgo-tec/OLED_SSD1306/blob/master/LICENSE
