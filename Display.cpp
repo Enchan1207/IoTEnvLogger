@@ -10,19 +10,22 @@
 //--コンストラクタ
 Display::Display(SSD1306 _oled){
     oled = _oled;
+    status = 0;
     oled.softReset();
     oled.cls();
 }
 
 //--メニューバー描画
 void Display::setMenuStatus(uint8_t stat){
-    if(stat & 0b001) oled.drawBMP(0, 0, 2, 2, menuBar[1], 1); //WiFiアイコン
-    else oled.drawBMP(0, 0, 2, 2, menuBar[0], 1);
-    if(stat & 0b010) oled.drawBMP(2, 0, 2, 2, menuBar[2], 1); //サーバ通信アイコン
-    else oled.drawBMP(2, 0, 2, 2, menuBar[0], 1);
-    if(stat & 0b100) oled.drawBMP(4, 0, 2, 2, menuBar[3], 1); //ペアリングアイコン
-    else oled.drawBMP(4, 0, 2, 2, menuBar[0], 1);
+    status = stat;
+    oled.drawBMP(0, 0, 2, 2, menuBar[1 * (status & 0b001)], 1); //WiFiアイコン
+    oled.drawBMP(2, 0, 2, 2, menuBar[2 * ((status & 0b010) != 0)], 1); //サーバ通信アイコン
+    oled.drawBMP(4, 0, 2, 2, menuBar[3 * ((status & 0b100) != 0)], 1); //ペアリングアイコン
 }
+uint8_t Display::getMenuStatus(){
+    return status;
+}
+
 
 //--温湿度設定
 void Display::setTemp(float temp){
