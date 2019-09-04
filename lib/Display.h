@@ -2,7 +2,7 @@
  * SSD1306ハイレベル制御クラス
 */
 
-#include "SSD1306.h"
+#include "SSD1306.cpp"
 #include <Arduino.h>
 
 class Display : public SSD1306 {
