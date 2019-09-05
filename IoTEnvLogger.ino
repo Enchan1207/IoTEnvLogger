@@ -67,6 +67,9 @@ void setup(){
 }
 
 void loop(){
+    //--WiFiの接続状態を表示
+    showWiFiInfo();
+
     //--指定間隔ごとにAPIを叩き、データを送信
     if((lcnt % 15) == 0 && isConnected) sendEnvData();
 
