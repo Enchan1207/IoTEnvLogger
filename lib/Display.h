@@ -12,6 +12,7 @@ class Display : public SSD1306 {
         uint8_t getMenuStatus();
         void setTemp(float temp);
         void setHumid(float humid);
+        void putDigit(int digit);
 
     private:
         SSD1306 oled;

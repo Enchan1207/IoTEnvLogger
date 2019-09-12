@@ -6,6 +6,7 @@
 #include <Arduino.h>
 #include <avr/pgmspace.h>
 #include "Data.h"
+#include <stdio.h>
 
 //--コンストラクタ
 Display::Display(SSD1306 _oled){
@@ -33,6 +34,21 @@ void Display::setTemp(float temp){
 }
 void Display::setHumid(float humid){
     setValue(int(humid * 10), 9);
+}
+
+//--純粋に6桁の数値を表示(ワンタイムパス用)
+void Display::putDigit(int digit){
+    //--一回きれいにしよっか
+    oled.cls();
+    //--digitを3桁ずつ分割
+    char dgchar[6] = "";
+    sprintf(dgchar, "%06d", digit);
+    oled.drawBMP(0 + 0, 2, 2, 6, number_Large[String(dgchar[0]).toInt()], 1);
+    oled.drawBMP(2 + 0, 2, 2, 6, number_Large[String(dgchar[1]).toInt()], 1);
+    oled.drawBMP(5 + 0, 2, 2, 6, number_Large[String(dgchar[2]).toInt()], 1);
+    oled.drawBMP(0 + 8, 2, 2, 6, number_Large[String(dgchar[3]).toInt()], 1);
+    oled.drawBMP(2 + 8, 2, 2, 6, number_Large[String(dgchar[4]).toInt()], 1);
+    oled.drawBMP(5 + 8, 2, 2, 6, number_Large[String(dgchar[5]).toInt()], 1);
 }
 
 //値を書き換える
