@@ -38,23 +38,19 @@ void showWiFiInfo(){
     }
 }
 
-//--ペアリングリクエストが来ているかチェック
-int checkPairingReq(){
+//--起動時にデバイスIDを表示する設定になっているかチェック
+int canIDShow(){
     //--送信前にデータ通信アイコンをオンにする
     disp.setMenuStatus(disp.getMenuStatus() | 0b010);
-
-    String url = "/Enchan/api/IoTEnvLogger/pairreq.php"; 
-    String param = "deviceID=" + String(deviceID);
+    String url = "/Enchan/api/IoTEnvLogger/config.php"; 
+    String param = "type=showID&deviceID=" + String(deviceID);
     httpreq.connect(80);
     String responce = httpreq.request(url, param, 5000);
     statusCode = httpreq.getHTTPCode();
     //--ステータスコードが返ってきたら通信アイコンをオフにする
     disp.setMenuStatus(disp.getMenuStatus() & 0b101);
 
-    if(statusCode == 400) return 0;
-
-    //--レスポンスの開始位置を検索
-    int start = responce.indexOf('@');
-    if(start == -1) return 0;
-    return responce.substring(start + 1).toInt();
+    //--ステータスコードで分岐
+    if(statusCode == 200) return true;
+    return false;
 }

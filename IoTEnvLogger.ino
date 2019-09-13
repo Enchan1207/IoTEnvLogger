@@ -22,9 +22,7 @@ const int deviceID = 223647;
 HTTPReq httpreq = HTTPReq();
 int statusCode;
 boolean isConnected = false; //WiFi接続状態
-
-//--
-boolean isPairingTrialed = false; //ペアリング試行済み?
+boolean isIDShowed = false; //起動時のデバイスID表示フラグ
 
 int lcnt = 0, gm = 0; //ループカウンタ、動作モード
 
@@ -38,14 +36,13 @@ void loop(){
     //--WiFiの接続状態を表示
     showWiFiInfo();
 
-    //--ペアリングが必要ならデバイスIDを3秒間表示し、温度計モードに戻る
-    if(!isPairingTrialed && isConnected){
-        isPairingTrialed = true;
-        int onetime_pass = checkPairingReq();
-        if(onetime_pass != 0){
+    //--起動時デバイスIDを5秒間表示し、温度計モードに戻る
+    if(!isIDShowed && isConnected){
+        isIDShowed = true;
+        if(canIDShow()){
             disp.putDigit(deviceID);
             int i = 0;
-            while(i<=3){
+            while(i <= 5){
                 delay(1e3);
                 i++;
             }
