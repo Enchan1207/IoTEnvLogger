@@ -39,7 +39,7 @@ void Display::setHumid(float humid){
 //--純粋に6桁の数値を表示(ワンタイムパス用)
 void Display::putDigit(int digit){
     //--一回きれいにしよっか
-    oled.cls();
+    cls();
     //--digitを3桁ずつ分割
     char dgchar[6] = "";
     sprintf(dgchar, "%06d", digit);
@@ -49,6 +49,11 @@ void Display::putDigit(int digit){
     oled.drawBMP(0 + 8, 2, 2, 6, number_Large[String(dgchar[3]).toInt()], 1);
     oled.drawBMP(2 + 8, 2, 2, 6, number_Large[String(dgchar[4]).toInt()], 1);
     oled.drawBMP(5 + 8, 2, 2, 6, number_Large[String(dgchar[5]).toInt()], 1);
+}
+
+//--cls
+void Display::cls(){
+    oled.cls();
 }
 
 //値を書き換える
