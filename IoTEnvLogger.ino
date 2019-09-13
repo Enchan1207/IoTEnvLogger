@@ -18,7 +18,7 @@ SHT31 sht31 = SHT31(0x44);
 float temp = 0.0, humid = 0.0;
 
 //--APIリクエスト
-const String deviceID = "EnchanESP02";
+const int deviceID = 223647;
 HTTPReq httpreq = HTTPReq();
 int statusCode;
 boolean isConnected = false; //WiFi接続状態
@@ -38,15 +38,18 @@ void loop(){
     //--WiFiの接続状態を表示
     showWiFiInfo();
 
-    //--ペアリングリクエストを確認、リクエストが来ていればワンタイムパスを出力してリセットまで待機
+    //--ペアリングが必要ならデバイスIDを3秒間表示し、温度計モードに戻る
     if(!isPairingTrialed && isConnected){
         isPairingTrialed = true;
         int onetime_pass = checkPairingReq();
         if(onetime_pass != 0){
-            disp.putDigit(onetime_pass);
-            while(true){
+            disp.putDigit(deviceID);
+            int i = 0;
+            while(i<=3){
                 delay(1e3);
+                i++;
             }
+            disp.cls();
         }
     }
 

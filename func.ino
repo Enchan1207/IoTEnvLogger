@@ -8,7 +8,7 @@ void sendEnvData(){
     disp.setMenuStatus(disp.getMenuStatus() | 0b010);
 
     String url = "/Enchan/api/IoTEnvLogger/"; 
-    String param = "deviceID=" + deviceID + "&temp=" + temp + "&humid=" + humid;
+    String param = "deviceID=" + String(deviceID) + "&temp=" + String(temp) + "&humid=" + String(humid);
     httpreq.connect(80);
     httpreq.request(url, param, 5000);
     statusCode = httpreq.getHTTPCode();
@@ -44,14 +44,14 @@ int checkPairingReq(){
     disp.setMenuStatus(disp.getMenuStatus() | 0b010);
 
     String url = "/Enchan/api/IoTEnvLogger/pairreq.php"; 
-    String param = "deviceID=" + deviceID;
+    String param = "deviceID=" + String(deviceID);
     httpreq.connect(80);
     String responce = httpreq.request(url, param, 5000);
     statusCode = httpreq.getHTTPCode();
     //--ステータスコードが返ってきたら通信アイコンをオフにする
     disp.setMenuStatus(disp.getMenuStatus() & 0b101);
 
-    if(statusCode == 404) return 0;
+    if(statusCode == 400) return 0;
 
     //--レスポンスの開始位置を検索
     int start = responce.indexOf('@');
